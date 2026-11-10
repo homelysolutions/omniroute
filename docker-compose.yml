@@ -1,0 +1,20 @@
+# OmniRoute on this Mac: dashboard and API on http://localhost:20128 (local only).
+# Version pinned on purpose: change the tag in mettre-a-jour.sh, not here by hand.
+services:
+  omniroute:
+    image: diegosouzapw/omniroute:${OMNIROUTE_VERSION:-3.8.53}
+    container_name: omniroute
+    restart: unless-stopped
+    stop_grace_period: 40s
+    environment:
+      # Enough memory for one coding agent (Claude Code, Codex...).
+      - OMNIROUTE_MEMORY_MB=8192
+    mem_limit: 10g
+    ports:
+      # 127.0.0.1 = reachable from this Mac only, never from the network.
+      - "127.0.0.1:20128:20128"
+    volumes:
+      - omniroute-data:/app/data
+
+volumes:
+  omniroute-data:
