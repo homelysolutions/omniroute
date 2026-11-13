@@ -17,6 +17,17 @@ et la fait tourner, uniquement sur ce Mac (adresse 127.0.0.1).
    ```
 3. Le navigateur s'ouvre sur http://localhost:20128 : c'est le tableau de bord.
 
+## Mot de passe du tableau de bord (une seule fois)
+
+À travers Docker, l'assistant du navigateur ne peut pas enregistrer le mot de passe
+(il affiche « jeton d'amorçage » puis « Erreur interne du serveur »). Fais-le plutôt dans le Terminal :
+
+```bash
+~/omniroute/definir-mot-de-passe.sh
+```
+
+Tape ton mot de passe deux fois (rien ne s'affiche pendant la frappe, c'est normal), puis connecte-toi sur http://localhost:20128.
+
 ## Brancher un fournisseur (obligatoire)
 
 Sans fournisseur, OmniRoute ne fait rien.
@@ -38,6 +49,25 @@ Adresse (Base URL) : http://localhost:20128/v1
 Clé (API Key)      : ta clé OmniRoute
 Modèle             : auto
 ```
+
+## Utiliser Claude Code avec OmniRoute (projets perso uniquement)
+
+Ta commande `claude` habituelle ne change pas. Un lanceur à part fait passer Claude Code par OmniRoute
+et les modèles gratuits d'OpenRouter.
+
+1. Une seule fois, range ta clé OmniRoute dans le Trousseau du Mac :
+   ```bash
+   ~/Dropbox/Claude/omniroute/enregistrer-cle.sh
+   ```
+2. Va dans un dossier de projet **perso**, puis lance :
+   ```bash
+   ~/Dropbox/Claude/omniroute/claude-omniroute.sh
+   ```
+   La première ligne affiche le modèle utilisé. Pour en essayer un autre :
+   `OMNIROUTE_MODEL=openrouter/google/gemma-4-31b-it:free ~/Dropbox/Claude/omniroute/claude-omniroute.sh`
+
+Le lanceur refuse de démarrer dans un dossier de projet client (Loomy, Suarato, Dialpine, Talk Flow…).
+Les modèles gratuits sont plus lents et bien moins forts que Claude : garde `claude` pour le travail client et le travail important.
 
 ## Au quotidien
 
